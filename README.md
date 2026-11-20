@@ -3,7 +3,6 @@
 Catalog and install stats for Shellui Marketplace.
 
 [![CI](https://github.com/shellui/marketplace-service/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/shellui/marketplace-service/actions/workflows/ci.yml)
-[![Docker Hub](https://img.shields.io/docker/v/shellui/marketplace-service?sort=semver&label=docker)](https://hub.docker.com/r/shellui/marketplace-service)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 Shellui Marketplace is the public directory of apps for the shell. This service stores the catalog, serves it to the [directory](https://github.com/shellui/marketplace) and to `shellui add`, and counts installs. Every listing in 0.9 is free. There is no pricing, payment, or checkout.
@@ -81,7 +80,7 @@ uv run python manage.py test
 
 ## Development
 
-Releases go to Docker Hub as `shellui/marketplace-service`. The checklist is in [PUBLISH.md](PUBLISH.md) and changes are in [CHANGELOG.md](CHANGELOG.md).
+Releases go to Docker Hub as `shellui/marketplace-service`. The image page is created on the first publish. The checklist is in [PUBLISH.md](PUBLISH.md) and the overview text is in [DOCKERHUB.md](DOCKERHUB.md). Changes are in [CHANGELOG.md](CHANGELOG.md).
 
 Dependabot is configured like the other Shellui services, with `target-branch: develop`. This repository does not have a `develop` branch yet. Create it before expecting Dependabot pull requests. Day-to-day work for 0.9 is on `main`.
 
