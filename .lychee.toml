@@ -1,0 +1,32 @@
+# Lychee link checker (CI: .github/workflows/ci.yml)
+# https://github.com/lycheeverse/lychee
+
+cache = true
+max_cache_age = "2d"
+cache_exclude_status = "500.."
+
+max_concurrency = 8
+timeout = 20
+max_retries = 5
+retry_wait_time = 3
+accept = ["200", "204", "206", "429"]
+
+exclude = [
+  '^https?://localhost(:[0-9]+)?(/|$)',
+  '^https?://127\.0\.0\.1(:[0-9]+)?(/|$)',
+  '^https?://\[::1\](:[0-9]+)?(/|$)',
+  '^https?://([^/]*\.)?example\.com(/|$)',
+  '^https?://([^/]*\.)?example(/|$)',
+  '^https?://notes\.example(/|$)',
+  '^https?://status\.example(/|$)',
+  '^https?://id\.example(/|$)',
+  '^https?://market\.example(/|$)',
+  '^https?://<',
+  # The central docs site publishes this path when shellui/shellui adds the service.
+  '^https://docs\.shellui\.com/marketplace(/|$)',
+]
+
+exclude_path = [
+  '\.venv',
+  'node_modules',
+]

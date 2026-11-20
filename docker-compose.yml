@@ -1,0 +1,65 @@
+services:
+  marketplace-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: shellui/marketplace-service:local
+    container_name: marketplace-service
+    ports:
+      - "${MARKETPLACE_SERVICE_PORT:-8010}:8000"
+    environment:
+      SECRET_KEY: "${SECRET_KEY:?SECRET_KEY is required. Copy .env.example to .env and set SECRET_KEY}"
+      DEBUG: "${DEBUG:-true}"
+      ALLOWED_HOSTS: "${ALLOWED_HOSTS:-localhost,127.0.0.1}"
+      CSRF_TRUSTED_ORIGINS: "${CSRF_TRUSTED_ORIGINS:-http://localhost:8010,http://127.0.0.1:8010}"
+      POSTGRES_DATABASE_URL: "${POSTGRES_DATABASE_URL:-postgres://marketplace:marketplace@postgres:5432/marketplace}"
+      POSTGRES_SSL_REQUIRE: "${POSTGRES_SSL_REQUIRE:-false}"
+      REDIS_URL: "${REDIS_URL:-redis://redis:6379/0}"
+      SQLITE_PATH: "/app/data/db.sqlite3"
+      MEDIA_ROOT: "/app/data/media"
+      STORAGE_BACKEND: "${STORAGE_BACKEND:-filesystem}"
+      IDENTITY_SERVICE_URL: "${IDENTITY_SERVICE_URL:-http://host.docker.internal:8000}"
+      IDENTITY_JWKS: "${IDENTITY_JWKS:-}"
+      IDENTITY_JWKS_FILE: "${IDENTITY_JWKS_FILE:-}"
+      IDENTITY_ISSUER: "${IDENTITY_ISSUER:-}"
+      IDENTITY_AUDIENCE: "${IDENTITY_AUDIENCE:-}"
+      CORS_ALLOW_ALL_ORIGINS: "${CORS_ALLOW_ALL_ORIGINS:-true}"
+      TRUST_PROXY: "${TRUST_PROXY:-false}"
+      SECURE_SSL_REDIRECT: "${SECURE_SSL_REDIRECT:-false}"
+      GUNICORN_WORKERS: "${GUNICORN_WORKERS:-2}"
+      GUNICORN_THREADS: "${GUNICORN_THREADS:-2}"
+      GUNICORN_TIMEOUT: "${GUNICORN_TIMEOUT:-60}"
+      SENTRY_DSN: "${SENTRY_DSN:-}"
+      SENTRY_ENVIRONMENT: "${SENTRY_ENVIRONMENT:-}"
+      SENTRY_RELEASE: "${SENTRY_RELEASE:-}"
+      SENTRY_TRACES_SAMPLE_RATE: "${SENTRY_TRACES_SAMPLE_RATE:-0}"
+    volumes:
+      - marketplace-service-data:/app/data
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: marketplace-service-postgres
+    environment:
+      POSTGRES_USER: marketplace
+      POSTGRES_PASSWORD: marketplace
+      POSTGRES_DB: marketplace
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U marketplace -d marketplace"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  redis:
+    image: redis:8-alpine
+    container_name: marketplace-service-redis
+    restart: unless-stopped
+
+volumes:
+  marketplace-service-data:

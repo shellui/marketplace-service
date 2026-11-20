@@ -1,0 +1,55 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+  <p>{{ published }} published apps. {{ active_total }} active installs.</p>
+  <h2>Apps</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>App</th>
+        <th>Category</th>
+        <th>Official</th>
+        <th>Status</th>
+        <th>Active installs</th>
+        <th>Baseline</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for app in apps %}
+        <tr>
+          <td>{{ app.name }}</td>
+          <td>{{ app.category.label }}</td>
+          <td>{{ app.is_official|yesno:"yes,no" }}</td>
+          <td>{{ app.get_status_display }}</td>
+          <td>{{ app.active_installs }}</td>
+          <td>{{ app.baseline_installs }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <h2>Recent events</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>When</th>
+        <th>App</th>
+        <th>Action</th>
+        <th>Subject hash</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for event in events %}
+        <tr>
+          <td>{{ event.created_at }}</td>
+          <td>{{ event.app.name }}</td>
+          <td>{{ event.get_action_display }}</td>
+          <td><code>{{ event.subject_hash }}</code></td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="4">No install events yet.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

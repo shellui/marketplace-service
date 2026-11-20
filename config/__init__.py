@@ -1,0 +1,1 @@
+"""Shellui Marketplace Django project."""

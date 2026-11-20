@@ -1,0 +1,13 @@
+{
+  "name": "marketplace-service-frontend",
+  "private": true,
+  "description": "Tailwind CSS build for the Shellui Marketplace landing page",
+  "scripts": {
+    "build:css": "tailwindcss -i ./assets/css/input.css -o ./static/css/site.css --minify",
+    "watch:css": "tailwindcss -i ./assets/css/input.css -o ./static/css/site.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  }
+}

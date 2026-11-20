@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@source "../../templates/**/*.html";
+
+@theme {
+  --color-primary: #e3a512;
+  --color-primary-foreground: #1a1408;
+  --color-background: #ffffff;
+  --color-foreground: #111827;
+  --color-muted-foreground: #4b5563;
+  --color-border: #e5e7eb;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+}

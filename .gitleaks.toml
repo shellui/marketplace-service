@@ -1,0 +1,7 @@
+# Extends the built-in rules. CI runs `gitleaks detect` with full history.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Published placeholders in docs and env examples"
+regexes = ['''your_secret_key_here''']
