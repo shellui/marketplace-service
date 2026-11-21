@@ -38,7 +38,7 @@ For production, `python manage.py generate_env --host market.example.com` prints
 | `POSTGRES_DATABASE_URL` | Postgres URL. Empty uses SQLite on the volume |
 | `REDIS_URL` | Required when `DEBUG=false`. Shared install rate limits |
 | `IDENTITY_ISSUER`, `IDENTITY_AUDIENCE` | Must match identity `JWT_ISSUER` and `JWT_AUDIENCE` |
-| `IDENTITY_JWKS` or `IDENTITY_JWKS_URL` | Keys that verify optional install Bearer tokens |
+| `IDENTITY_JWKS` or `IDENTITY_JWKS_URL` | Keys that verify optional install Bearer tokens. A fetched URL must be https unless `DEBUG` is true |
 | `STORAGE_BACKEND` | `filesystem` (default) or `s3` for icons and screenshots |
 
 Every setting is in [Configuration](docs/configuration.md).

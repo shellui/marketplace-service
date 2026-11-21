@@ -84,6 +84,6 @@ The app redirects HTTP to HTTPS when `SECURE_SSL_REDIRECT` is true (the default 
 | `REDIS_URL` | `redis://redis:6379/0` | Shared install rate limits |
 | `IDENTITY_ISSUER` | `https://id.example.com` | JWT issuer |
 | `IDENTITY_AUDIENCE` | `shellui` | JWT audience |
-| `IDENTITY_JWKS` or `IDENTITY_SERVICE_URL` | a JWKS document or `https://id.example.com` | Token verification |
+| `IDENTITY_JWKS` or `IDENTITY_SERVICE_URL` | a JWKS document or `https://id.example.com` | Token verification. A fetched URL must be https unless `DEBUG` is true |
 
 Create the first admin user with `python manage.py createsuperuser` inside the container.

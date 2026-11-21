@@ -23,7 +23,7 @@ dependencies = [
     "prometheus-client==0.21.1",
     "redis==8.1.0",
     "pillow==13.0.0",
-    "shellui-django[mcp]==0.5.1",
+    "shellui-django[mcp]==0.6.0",
 ]
 
 [dependency-groups]

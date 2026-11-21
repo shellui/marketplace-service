@@ -46,7 +46,7 @@ def production_settings(app_configs, **kwargs):
     if not settings.IDENTITY_JWKS_DOCUMENT and not settings.IDENTITY_JWKS_URL:
         errors.append(
             Error(
-                'Set IDENTITY_JWKS, IDENTITY_JWKS_FILE, or IDENTITY_JWKS_URL so install tokens can be verified.',
+                'Set IDENTITY_JWKS, IDENTITY_JWKS_FILE, or an https IDENTITY_JWKS_URL.',
                 id='marketplace.E005',
             )
         )

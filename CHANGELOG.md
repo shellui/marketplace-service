@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### 🏗 Chore
+
+- Pin `shellui-django[mcp]` to 0.6.0. A fetched Identity JWKS URL must be https unless `DEBUG` is true, and redirects are not followed. Startup rejects an http JWKS URL when `DEBUG` is false.
+
 ## [0.9.0] - 2026-11-20
 
 ### ✨ Feature

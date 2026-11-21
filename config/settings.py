@@ -334,6 +334,8 @@ IDENTITY_SERVICE_URL = os.getenv('IDENTITY_SERVICE_URL', '').strip().rstrip('/')
 IDENTITY_JWKS_URL = '' if IDENTITY_JWKS_DOCUMENT is not None else _resolve_identity_jwks_url()
 if IDENTITY_JWKS_URL and not IDENTITY_JWKS_URL.startswith(('http://', 'https://')):
     raise ImproperlyConfigured('IDENTITY_JWKS_URL must be an http or https URL.')
+if IDENTITY_JWKS_URL.startswith('http://') and not DEBUG:
+    raise ImproperlyConfigured('IDENTITY_JWKS_URL must use https when DEBUG is false.')
 IDENTITY_ISSUER = os.getenv('IDENTITY_ISSUER', '').strip() or None
 IDENTITY_AUDIENCE = os.getenv('IDENTITY_AUDIENCE', '').strip() or None
 
