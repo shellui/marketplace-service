@@ -22,7 +22,7 @@ When writing user-facing copy, follow the Shellui handbooks:
 - Slugs may contain one slash. Routes accept `/api/apps/shellui/files` and `/api/apps/shellui%2Ffiles`.
 - Identity Bearer tokens go through `shellui_django.mcp.identity_jwks.decode_identity_rs256_jwt`.
 - Do not log or store raw IPs, origins, install ids, tokens, or user ids. See [SECURITY.md](SECURITY.md).
-- `shellui-django` stays on 0.5.1, the same release as storage-service, email-service, and hosting-service.
+- `shellui-django` is pinned to 0.6.0. This service verifies Identity JWTs and does not run an MCP server.
 - Dependabot targets `develop`, like those services. That branch does not exist yet.
 
 ## Checks

@@ -16,7 +16,7 @@ Settings are environment variables. `python manage.py generate_env --host market
 | `AWS_S3_ENDPOINT_URL` | empty | MinIO, R2, or another S3-compatible endpoint |
 | `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` | empty | S3 credentials |
 | `IDENTITY_SERVICE_URL` | empty | Used to build the JWKS URL when no pin is set |
-| `IDENTITY_JWKS_URL` | derived | Fetched JWKS |
+| `IDENTITY_JWKS_URL` | derived | Fetched JWKS. https unless `DEBUG` is true. Redirects are not followed. |
 | `IDENTITY_JWKS` | empty | Inline JWKS JSON. Preferred in production |
 | `IDENTITY_JWKS_FILE` | empty | Path to a JWKS file |
 | `IDENTITY_ISSUER` | empty | Required when `DEBUG=false` |
